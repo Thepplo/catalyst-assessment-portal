@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Results</title>
+     <link rel="stylesheet" href="index.css">
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div class="header">
+      <div class="logo-container">
+        <img src="./assets/logo.png" alt="logo" class="logo"/>
+      </div>
+      <!-- <img src="./assets/logo.png" alt="logo" class="logo"/> -->
+      <!-- <div class="header-text">AndQFIVE</div> -->
+    <h1>GAME RESULTS</h1>
+    </div>
+    <div class="login-page" id="login-page">
+      <div class="login-card" id="login-card">
+        <div class="login-header">
+          <img src ="assets/public/icons/logo.svg" style = "color:#ffda33"/>
+          <h2>RESULTS PORTAL</h2>
+        </div>
+        <div class="row">
+          <div class="input-div">
+            <p>Game ID*</p>
+          <input id="gameIdInput" placeholder="gameId (required)" class="input-field"/>
+          </div>
+          <div class="input-div">
+            <p>Team ID (optional)</p>
+          <input id="teamIdInput" placeholder="teamId (optional)" class="input-field"/>
+          </div>
+        </div>
+        <button id="loadBtn" class="btn-primary">
+          <img src="assets/public/icons/login-enter.svg"/>Load</button>
+      </div>
+    </div>
+    <div id="app" class="muted"></div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-wordcloud@latest"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
