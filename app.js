@@ -48,8 +48,8 @@ function renderParticipant(participant) {
   return `
     <div class="card">
       <h2>Your Results</h2>
-      <p class="muted">Participant ID: <b>${escapeHtml(participant.participantId)}</b></p>
-      <p class="muted">Judge Count: <b>${escapeHtml(participant.judgeCount)}</b></p>
+      <p>Participant ID: <b>${escapeHtml(participant.participantId)}</b></p>
+      <p>Judge Count: <b>${escapeHtml(participant.judgeCount)}</b></p>
     </div>
 
     <div class="card">
