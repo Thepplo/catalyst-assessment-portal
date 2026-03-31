@@ -58,6 +58,7 @@ body {
   /*background-image: url("Benjamin_Olszewski-8898\ 1.png");
   background-repeat: no-repeat;
   background-size: cover;*/
+  color: var(--text);
 }
 .donut-layout {
   display: grid;
@@ -212,12 +213,12 @@ body {
   padding-top: 5rem;
   margin: 24px auto;
   max-width: 1200px;
+  color: var(--text);
 }
 
 
 
 .card {
-  opacity: 0.5;
   transform: translateY(15px);
   background:
       linear-gradient(
@@ -241,6 +242,7 @@ body {
   max-height: 800px;
   min-height: 500px;
   transition: opacity 180ms ease, transform 180ms ease;
+  color: var(--text);
 }
 
 .card.is-visible {

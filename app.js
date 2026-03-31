@@ -56,12 +56,12 @@ function renderParticipant(participant) {
       <h3>Results</h3>
       <table>
         <tbody>
-          <tr><th>Evidenced Relevant</th><td>${escapeHtml(participant.evidencedRelevant)}</td></tr>
-          <tr><th>Hit Impact</th><td>${escapeHtml(participant.hitImpact)}</td></tr>
-          <tr><th>Eighty Ten</th><td>${escapeHtml(participant.eightyTen)}</td></tr>
+          <tr><th>Evidenced & Relevant</th><td>${escapeHtml(participant.evidencedRelevant)}</td></tr>
+          <tr><th>Hit With Impact</th><td>${escapeHtml(participant.hitImpact)}</td></tr>
+          <tr><th>80/10/10</th><td>${escapeHtml(participant.eightyTen)}</td></tr>
           <tr><th>Hackathon</th><td>${escapeHtml(participant.hackaThon)}</td></tr>
-          <tr><th>Make Real</th><td>${escapeHtml(participant.makeReal)}</td></tr>
-          <tr><th>Knowing Doing</th><td>${escapeHtml(participant.knowingDoing)}</td></tr>
+          <tr><th>Make It Real</th><td>${escapeHtml(participant.makeReal)}</td></tr>
+          <tr><th>From Knowing To Doing</th><td>${escapeHtml(participant.knowingDoing)}</td></tr>
           <tr><th>Memories</th><td>${escapeHtml(participant.memOries)}</td></tr>
         </tbody>
       </table>
