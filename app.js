@@ -87,11 +87,11 @@ function renderBar(score) {
 
 function renderLabel(label, info) {
   return `
-    <div class="cell cell-label label-with-info no-print">
+    <div class="cell cell-label label-with-info">
       <span>${escapeHtml(label)}</span>
       <span class="info-trigger" tabindex="0" aria-label="More info">
         ⓘ
-        <span class="info-tooltip">${escapeHtml(info)}</span>
+        <span class="info-tooltip no-print">${escapeHtml(info)}</span>
       </span>
     </div>
   `;

@@ -591,29 +591,122 @@ h2 {
 }
 
 @media print {
+  @page {
+    size: A4;
+    margin: 12mm;
+  }
+
+  html, body {
+    background: white !important;
+    color: black !important;
+  }
+
   body {
-    background: black;
-  }
-  #app {
-    background-color: #2A2228;
-    padding: 0;
     margin: 0;
-    max-width: none;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    font-family: Arial, Helvetica, sans-serif !important;
   }
-  .no-print {
+
+  h1, h2, h3, .login-header, .header {
+    font-family: Arial, Helvetica, sans-serif !important;
+    color: black !important;
+  }
+
+  #app {
+    background: white !important;
+    color: black !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    max-width: none !important;
+  }
+
+  .header,
+  .logo-container,
+  .no-print,
+  .info-trigger,
+  .info-tooltip,
+  .login-page,
+  .login-card,
+  button {
     display: none !important;
   }
 
   .card {
-    box-shadow: none;
-    border: 1px solid var(--border-strong);
+    background: white !important;
+    color: black !important;
+    border: 1px solid #ccc !important;
+    box-shadow: none !important;
+    transform: none !important;
+    border-radius: 0 !important;
+    padding: 16px !important;
+    margin: 0 0 16px 0 !important;
+    max-height: none !important;
     break-inside: avoid;
     page-break-inside: avoid;
-    background-color: #3A3237;
+  }
+
+  .participant-info,
+  .comment-card,
+  .score-parts,
+  .muted,
+  p,
+  div {
+    color: black !important;
   }
 
   .results-grid {
+    display: grid !important;
+    grid-template-columns: 2.2fr 2.5fr 0.8fr 1.2fr !important;
+    border: 1px solid #999 !important;
+    border-radius: 0 !important;
+    overflow: visible !important;
+    background: white !important;
     break-inside: avoid;
     page-break-inside: avoid;
+  }
+
+  .metric-row {
+    display: contents !important;
+  }
+
+  .header-cell {
+    background: #f2f2f2 !important;
+    color: black !important;
+    font-weight: 700 !important;
+    padding: 8px 10px !important;
+    border-bottom: 1px solid #999 !important;
+  }
+
+  .cell {
+    background: white !important;
+    color: black !important;
+    padding: 8px 10px !important;
+    border-bottom: 1px solid #ccc !important;
+  }
+
+  .metric-row.striped .cell {
+    background: #fafafa !important;
+  }
+
+  .bar {
+    width: 100% !important;
+    height: 10px !important;
+    background: #e5e5e5 !important;
+    border: 1px solid #ccc !important;
+    border-radius: 999px !important;
+    overflow: hidden !important;
+  }
+
+  .fill {
+    height: 100% !important;
+    background: #666 !important;
+    border-radius: 999px !important;
+  }
+
+  .comment-card {
+    background: white !important;
+    border: 1px solid #ccc !important;
+    box-shadow: none !important;
   }
 }
