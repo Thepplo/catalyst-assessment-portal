@@ -87,7 +87,7 @@ function renderBar(score) {
 
 function renderLabel(label, info) {
   return `
-    <div class="cell cell-label label-with-info">
+    <div class="cell cell-label label-with-info no-print">
       <span>${escapeHtml(label)}</span>
       <span class="info-trigger" tabindex="0" aria-label="More info">
         ⓘ
@@ -180,13 +180,17 @@ function renderParticipant(participant) {
     </div>
 
     <div class="card">
-      <h3>What you did well</h3>
+      <h2>What you did well</h2>
       ${renderCommentBlocks(participant.didWell)}
     </div>
 
     <div class="card">
-      <h3>Gaps</h3>
+      <h2>Gaps</h2>
       ${renderCommentBlocks(participant.gaps)}
+    </div>
+
+    <div class="no-print">
+      <button onclick="window.print()">Download PDF</button>
     </div>
   `;
 }

@@ -578,8 +578,8 @@ h2 {
 }
 
 .comment-card {
-  background: #f9fafb;
-  border: 1px solid #e5e7eb;
+  background: var(--surface-2);
+  border: 1px solid var(--border-strong);
   border-radius: 10px;
   padding: 0.75rem 0.9rem;
   line-height: 1.4;
@@ -587,5 +587,27 @@ h2 {
 }
 
 .comment-empty {
-  color: #6b7280;
+  color: var(--text-muted);
+}
+
+@media print {
+  body {
+    background: black;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .card {
+    box-shadow: none;
+    border: 1px solid var(--border-strong);
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .results-grid {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
 }
