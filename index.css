@@ -590,7 +590,27 @@ h2 {
   color: var(--text-muted);
 }
 
-@media print {
+#report {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.pdf-card {
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+.no-print {
+  margin-bottom: 1rem;
+}
+
+@media screen {
+  #report {
+    background: transparent;
+  }
+}
+
+/* @media print {
   @page {
     size: A4;
     margin: 12mm;
@@ -709,4 +729,4 @@ h2 {
     border: 1px solid #ccc !important;
     box-shadow: none !important;
   }
-}
+} */

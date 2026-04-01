@@ -4,6 +4,36 @@ function qs() {
   return new URLSearchParams(location.search);
 }
 
+document.getElementById("downloadPdfBtn")?.addEventListener("click", async () => {
+  const report = document.getElementById("report");
+  if (!report) return;
+
+  const participantId =
+    document.querySelector("[data-participant-id]")?.getAttribute("data-participant-id") ||
+    "participant-report";
+
+  const opt = {
+    margin: [10, 10, 10, 10],
+    filename: `${participantId}-assessment-results.pdf`,
+    image: { type: "jpeg", quality: 0.98 },
+    html2canvas: {
+      scale: 2,
+      useCORS: true,
+      backgroundColor: "#ffffff"
+    },
+    jsPDF: {
+      unit: "mm",
+      format: "a4",
+      orientation: "portrait"
+    },
+    pagebreak: {
+      mode: ["css", "legacy"]
+    }
+  };
+
+  await html2pdf().set(opt).from(report).save();
+});
+
 function setQueryParams(params) {
   const url = new URL(location.href);
   Object.entries(params).forEach(([k, v]) => {
@@ -121,7 +151,8 @@ async function fetchResults({ participantId, code }) {
 
 function renderParticipant(participant) {
   return `
-    <div class="card">
+  <div id="report" data-participant-id="${escapeHtml(participant.participantId)}">
+    <div class="card pdf-card">
       <h2>Your Results</h2>
       <div class="participant-info">
         <p>Participant ID: <b>${escapeHtml(participant.participantId)}</b></p>
@@ -179,19 +210,20 @@ function renderParticipant(participant) {
       </div>
     </div>
 
-    <div class="card">
+    <div class="card pdf-card">
       <h2>What you did well</h2>
       ${renderCommentBlocks(participant.didWell)}
     </div>
 
-    <div class="card">
+    <div class="card pdf-card">
       <h2>Gaps</h2>
       ${renderCommentBlocks(participant.gaps)}
     </div>
 
     <div class="no-print">
-      <button onclick="window.print()">Download PDF</button>
+      <button id="downloadPdfBtn">Download PDF</button>
     </div>
+  </div>
   `;
 }
 
