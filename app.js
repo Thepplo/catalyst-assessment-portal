@@ -189,8 +189,8 @@ function renderParticipant(participant) {
       ${renderCommentBlocks(participant.gaps)}
     </div>
 
-    <div class="no-print">
-      <button onclick="window.print()">Download PDF</button>
+    <div class="no-print button-div">
+      <button class="pdf-button" onclick="window.print()">Download PDF</button>
     </div>
   `;
 }
