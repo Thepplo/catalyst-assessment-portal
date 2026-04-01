@@ -4,36 +4,6 @@ function qs() {
   return new URLSearchParams(location.search);
 }
 
-document.getElementById("downloadPdfBtn")?.addEventListener("click", async () => {
-  const report = document.getElementById("report");
-  if (!report) return;
-
-  const participantId =
-    document.querySelector("[data-participant-id]")?.getAttribute("data-participant-id") ||
-    "participant-report";
-
-  const opt = {
-    margin: [10, 10, 10, 10],
-    filename: `${participantId}-assessment-results.pdf`,
-    image: { type: "jpeg", quality: 0.98 },
-    html2canvas: {
-      scale: 2,
-      useCORS: true,
-      backgroundColor: "#ffffff"
-    },
-    jsPDF: {
-      unit: "mm",
-      format: "a4",
-      orientation: "portrait"
-    },
-    pagebreak: {
-      mode: ["css", "legacy"]
-    }
-  };
-
-  await html2pdf().set(opt).from(report).save();
-});
-
 function setQueryParams(params) {
   const url = new URL(location.href);
   Object.entries(params).forEach(([k, v]) => {
@@ -126,7 +96,41 @@ function renderLabel(label, info) {
     </div>
   `;
 }
+function bindPdfButton() {
+  const btn = document.getElementById("downloadPdfBtn");
+  if (!btn || btn.dataset.bound) return;
 
+  btn.dataset.bound = "1";
+  btn.addEventListener("click", async () => {
+    const report = document.getElementById("report");
+    if (!report) return;
+
+    const participantId =
+      document.querySelector("[data-participant-id]")?.getAttribute("data-participant-id") ||
+      "participant-report";
+
+    const opt = {
+      margin: [10, 10, 10, 10],
+      filename: `${participantId}-assessment-results.pdf`,
+      image: { type: "jpeg", quality: 0.98 },
+      html2canvas: {
+        scale: 2,
+        useCORS: true,
+        backgroundColor: "#ffffff"
+      },
+      jsPDF: {
+        unit: "mm",
+        format: "a4",
+        orientation: "portrait"
+      },
+      pagebreak: {
+        mode: ["css", "legacy"]
+      }
+    };
+
+    await html2pdf().set(opt).from(report).save();
+  });
+}
 async function fetchResults({ participantId, code }) {
   const url = new URL(WORKER_BASE);
   url.searchParams.set("participantId", participantId);
@@ -251,6 +255,7 @@ async function run() {
         loginPage.style.display = "none";
         loginCard.style.display = "none";
         app.innerHTML = renderParticipant(data.participant);
+        bindPdfButton();
       } catch (err) {
         app.textContent = `Error: ${err.message}`;
       }
