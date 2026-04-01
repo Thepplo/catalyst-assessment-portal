@@ -35,10 +35,10 @@ function renderScore(score) {
     <div class="cell score-parts">(${escapeHtml(score.parts.join(", "))})</div>
   `;
 }
-function renderMetricRow(label, score, striped = false) {
+function renderMetricRow(label, score, info, striped = false) {
   return `
     <div class="metric-row${striped ? " striped" : ""}">
-      <div class="cell cell-label grid-bold">${escapeHtml(label)}</div>
+      ${renderLabel(label, info)}
       <div class="cell cell-bar">${renderBar(score)}</div>
       ${renderScore(score)}
     </div>
@@ -53,6 +53,18 @@ function renderBar(score) {
   return `
     <div class="bar">
       <div class="fill" style="width: ${percentage}%;"></div>
+    </div>
+  `;
+}
+
+function renderLabel(label, info) {
+  return `
+    <div class="cell cell-label label-with-info">
+      <span>${escapeHtml(label)}</span>
+      <span class="info-trigger" tabindex="0" aria-label="More info">
+        ⓘ
+        <span class="info-tooltip">${escapeHtml(info)}</span>
+      </span>
     </div>
   `;
 }
@@ -94,13 +106,48 @@ function renderParticipant(participant) {
         <div class="header-cell">Total</div>
         <div class="header-cell">Individual Scores</div>
 
-        ${renderMetricRow("Evidenced & Relevant", participant.evidencedRelevant, false)}
-        ${renderMetricRow("Hit With Impact", participant.hitImpact, true)}
-        ${renderMetricRow("80/10/10", participant.eightyTen, false)}
-        ${renderMetricRow("Hackathon", participant.hackaThon, true)}
-        ${renderMetricRow("Make It Real", participant.makeReal, false)}
-        ${renderMetricRow("From Knowing To Doing", participant.knowingDoing, true)}
-        ${renderMetricRow("Memories", participant.memOries, false)}
+        ${renderMetricRow(
+          "Evidenced & Relevant",
+          participant.evidencedRelevant,
+          "How well the participant supported their ideas with evidence and made them relevant to the audience.",
+          false
+        )}
+        ${renderMetricRow(
+          "Hit With Impact",
+          participant.hitImpact,
+          "How effectively the participant delivered their message and influenced the audience.",
+          true
+        )}
+        ${renderMetricRow(
+          "80/10/10",
+          participant.eightyTen,
+          "The participant's ability to balance different aspects of their presentation.",
+          false
+        )}
+        ${renderMetricRow(
+          "Hackathon",
+          participant.hackaThon,
+          "The participant's performance during the hackathon challenge.",
+          true
+        )}
+        ${renderMetricRow(
+          "Make It Real",
+          participant.makeReal,
+          "The participant's ability to turn ideas into actionable plans.",
+          false
+        )}
+        ${renderMetricRow(
+          "From Knowing To Doing",
+          participant.knowingDoing,
+          "The participant's ability to apply their knowledge in practical situations.",
+          true
+        )}
+        ${renderMetricRow(
+          "Memories",
+          participant.memOries,
+          "The participant's ability to create lasting impressions.",
+          false
+        )}
       </div>
     </div>
 

@@ -523,3 +523,50 @@ h2 {
   background: #ffda33;
   border-radius: 999px;
 }
+
+.label-with-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.info-trigger {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.1rem;
+  height: 1.1rem;
+  border-radius: 999px;
+  background: #e5e7eb;
+  color: #374151;
+  font-size: 0.75rem;
+  cursor: help;
+  flex: 0 0 auto;
+}
+
+.info-tooltip {
+  position: absolute;
+  left: 1.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 220px;
+  padding: 0.65rem 0.75rem;
+  background: #111827;
+  color: white;
+  font-size: 0.85rem;
+  line-height: 1.35;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 120ms ease;
+  z-index: 20;
+}
+
+.info-trigger:hover .info-tooltip,
+.info-trigger:focus .info-tooltip {
+  opacity: 1;
+  visibility: visible;
+}
