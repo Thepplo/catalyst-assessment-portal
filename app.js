@@ -40,7 +40,7 @@ function parseComments(value) {
   if (!value) return [];
 
   return String(value)
-    .split(/\n|;|,/g)
+    .split(";")
     .map(s => s.trim())
     .filter(Boolean);
 }
