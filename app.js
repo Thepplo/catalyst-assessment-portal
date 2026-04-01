@@ -35,6 +35,34 @@ function renderScore(score) {
     <div class="cell score-parts">(${escapeHtml(score.parts.join(", "))})</div>
   `;
 }
+
+function parseComments(value) {
+  if (!value) return [];
+
+  return String(value)
+    .split(/\n|;|,/g)
+    .map(s => s.trim())
+    .filter(Boolean);
+}
+
+function renderCommentBlocks(value) {
+  const items = parseComments(value);
+
+  if (!items.length) {
+    return `<div class="comment-empty">—</div>`;
+  }
+
+  return `
+    <div class="comment-blocks">
+      ${items.map(item => `
+        <div class="comment-card">
+          ${escapeHtml(item)}
+        </div>
+      `).join("")}
+    </div>
+  `;
+}
+
 function renderMetricRow(label, score, info, striped = false) {
   return `
     <div class="metric-row${striped ? " striped" : ""}">
@@ -153,12 +181,12 @@ function renderParticipant(participant) {
 
     <div class="card">
       <h3>What you did well</h3>
-      <p>${escapeHtml(participant.didWell || "—")}</p>
+      ${renderCommentBlocks(participant.didWell)}
     </div>
 
     <div class="card">
       <h3>Gaps</h3>
-      <p>${escapeHtml(participant.gaps || "—")}</p>
+      ${renderCommentBlocks(participant.gaps)}
     </div>
   `;
 }

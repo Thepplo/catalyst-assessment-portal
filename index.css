@@ -570,3 +570,22 @@ h2 {
   opacity: 1;
   visibility: visible;
 }
+
+.comment-blocks {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.comment-card {
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 0.75rem 0.9rem;
+  line-height: 1.4;
+  font-size: 0.95rem;
+}
+
+.comment-empty {
+  color: #6b7280;
+}
