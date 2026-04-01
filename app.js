@@ -22,6 +22,17 @@ function escapeHtml(str) {
     .replaceAll("'", "&#039;");
 }
 
+function renderScore(score) {
+  if (!score) return "—";
+
+  return `
+    <div>
+      <strong>${score.total}</strong>
+      <span class="muted">(${score.parts.join(", ")})</span>
+    </div>
+  `;
+}
+
 async function fetchResults({ participantId, code }) {
   const url = new URL(WORKER_BASE);
   url.searchParams.set("participantId", participantId);
@@ -56,13 +67,13 @@ function renderParticipant(participant) {
       <h3>Results</h3>
       <table>
         <tbody>
-          <tr><th>Evidenced & Relevant</th><td>${escapeHtml(participant.evidencedRelevant)}</td></tr>
-          <tr><th>Hit With Impact</th><td>${escapeHtml(participant.hitImpact)}</td></tr>
-          <tr><th>80/10/10</th><td>${escapeHtml(participant.eightyTen)}</td></tr>
-          <tr><th>Hackathon</th><td>${escapeHtml(participant.hackaThon)}</td></tr>
-          <tr><th>Make It Real</th><td>${escapeHtml(participant.makeReal)}</td></tr>
-          <tr><th>From Knowing To Doing</th><td>${escapeHtml(participant.knowingDoing)}</td></tr>
-          <tr><th>Memories</th><td>${escapeHtml(participant.memOries)}</td></tr>
+          <tr><th>Evidenced & Relevant</th><td>${renderScore(participant.evidencedRelevant)}</td></tr>
+          <tr><th>Hit With Impact</th><td>${renderScore(participant.hitImpact)}</td></tr>
+          <tr><th>80/10/10</th><td>${renderScore(participant.eightyTen)}</td></tr>
+          <tr><th>Hackathon</th><td>${renderScore(participant.hackaThon)}</td></tr>
+          <tr><th>Make It Real</th><td>${renderScore(participant.makeReal)}</td></tr>
+          <tr><th>From Knowing To Doing</th><td>${renderScore(participant.knowingDoing)}</td></tr>
+          <tr><th>Memories</th><td>${renderScore(participant.memOries)}</td></tr>
         </tbody>
       </table>
     </div>
