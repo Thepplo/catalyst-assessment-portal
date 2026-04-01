@@ -74,17 +74,35 @@ function renderParticipant(participant) {
         <p>Participant ID: <b>${escapeHtml(participant.participantId)}</b></p>
         <p>Judge Count: <b>${escapeHtml(participant.judgeCount)}</b></p>
       </div>
-      <table>
-        <tbody>
-          <tr><th>Evidenced & Relevant</th><td>${renderBar(participant.evidencedRelevant)}</td><td>${renderScore(participant.evidencedRelevant)}</td></tr>
-          <tr><th>Hit With Impact</th><td>${renderBar(participant.hitImpact)}</td><td>${renderScore(participant.hitImpact)}</td></tr>
-          <tr><th>80/10/10</th><td>${renderBar(participant.eightyTen)}</td><td>${renderScore(participant.eightyTen)}</td></tr>
-          <tr><th>Hackathon</th><td>${renderBar(participant.hackaThon)}</td><td>${renderScore(participant.hackaThon)}</td></tr>
-          <tr><th>Make It Real</th><td>${renderBar(participant.makeReal)}</td><td>${renderScore(participant.makeReal)}</td></tr>
-          <tr><th>From Knowing To Doing</th><td>${renderBar(participant.knowingDoing)}</td><td>${renderScore(participant.knowingDoing)}</td></tr>
-          <tr><th>Memories</th><td>${renderBar(participant.memOries)}</td><td>${renderScore(participant.memOries)}</td></tr>
-        </tbody>
-      </table>
+      <div class="results-grid">
+        <div class="font-semibold">Evidenced & Relevant</div>
+        <div>${renderBar(participant.evidencedRelevant)}</div>
+        <div>${renderScore(participant.evidencedRelevant)}</div>
+
+        <div class="font-semibold">Hit With Impact</div>
+        <div>${renderBar(participant.hitImpact)}</div>
+        <div>${renderScore(participant.hitImpact)}</div>
+
+        <div class="font-semibold">80/10/10</div>
+        <div>${renderBar(participant.eightyTen)}</div>
+        <div>${renderScore(participant.eightyTen)}</div>
+
+        <div class="font-semibold">Hackathon</div>
+        <div>${renderBar(participant.hackaThon)}</div>
+        <div>${renderScore(participant.hackaThon)}</div>
+
+        <div class="font-semibold">Make It Real</div>
+        <div>${renderBar(participant.makeReal)}</div>
+        <div>${renderScore(participant.makeReal)}</div>
+
+        <div class="font-semibold">From Knowing To Doing</div>
+        <div>${renderBar(participant.knowingDoing)}</div>
+        <div>${renderScore(participant.knowingDoing)}</div>
+
+        <div class="font-semibold">Memories</div>
+        <div>${renderBar(participant.memOries)}</div>
+        <div>${renderScore(participant.memOries)}</div>
+      </div>
     </div>
     <div class="card">
       <h3>What you did well</h3>

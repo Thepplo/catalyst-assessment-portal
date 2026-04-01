@@ -454,6 +454,13 @@ h2 {
 
 .participant-info {
   display: flex;
-  justify-content: space-between;
+  gap: 2.5rem;
   margin-bottom: 16px;
+}
+
+.results-grid {
+  display: grid;
+  grid-template-columns: 2fr 3fr 1fr;
+  row-gap: 0.5rem;
+  align-items: center;
 }
