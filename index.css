@@ -437,3 +437,17 @@ h2 {
   opacity: 0.5;
   cursor: not-allowed;
 }
+
+
+.bar {
+  height: 8px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.fill {
+  height: 100%;
+  background: #ffda33;
+  border-radius: 4px;
+}

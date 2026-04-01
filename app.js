@@ -33,6 +33,17 @@ function renderScore(score) {
   `;
 }
 
+function renderBar(score) {
+  if (!score) return "—";
+
+  const percentage = Math.round((score.total / 30) * 100);
+  return `
+    <div class="bar">
+      <div class="fill" style="width: ${percentage}%;"></div>
+    </div>
+  `;
+}
+
 async function fetchResults({ participantId, code }) {
   const url = new URL(WORKER_BASE);
   url.searchParams.set("participantId", participantId);
@@ -61,22 +72,17 @@ function renderParticipant(participant) {
       <h2>Your Results</h2>
       <p>Participant ID: <b>${escapeHtml(participant.participantId)}</b></p>
       <p>Judge Count: <b>${escapeHtml(participant.judgeCount)}</b></p>
-    </div>
-
-    <div class="card">
-      <h3>Results</h3>
       <table>
         <tbody>
-          <tr><th>Evidenced & Relevant</th><td>${renderScore(participant.evidencedRelevant)}</td></tr>
-          <tr><th>Hit With Impact</th><td>${renderScore(participant.hitImpact)}</td></tr>
-          <tr><th>80/10/10</th><td>${renderScore(participant.eightyTen)}</td></tr>
-          <tr><th>Hackathon</th><td>${renderScore(participant.hackaThon)}</td></tr>
-          <tr><th>Make It Real</th><td>${renderScore(participant.makeReal)}</td></tr>
-          <tr><th>From Knowing To Doing</th><td>${renderScore(participant.knowingDoing)}</td></tr>
-          <tr><th>Memories</th><td>${renderScore(participant.memOries)}</td></tr>
+          <tr><th>Evidenced & Relevant</th><td>${renderScore(participant.evidencedRelevant)}</td> <td>${renderBar(participant.evidencedRelevant)}</td></tr>
+          <tr><th>Hit With Impact</th><td>${renderScore(participant.hitImpact)}</td><td>${renderBar(participant.hitImpact)}</td></tr>
+          <tr><th>80/10/10</th><td>${renderScore(participant.eightyTen)}</td><td>${renderBar(participant.eightyTen)}</td></tr>
+          <tr><th>Hackathon</th><td>${renderScore(participant.hackaThon)}</td><td>${renderBar(participant.hackaThon)}</td></tr>
+          <tr><th>Make It Real</th><td>${renderScore(participant.makeReal)}</td><td>${renderBar(participant.makeReal)}</td></tr>
+          <tr><th>From Knowing To Doing</th><td>${renderScore(participant.knowingDoing)}</td><td>${renderBar(participant.knowingDoing)}</td></tr>
+          <tr><th>Memories</th><td>${renderScore(participant.memOries)}</td><td>${renderBar(participant.memOries)}</td></tr>
         </tbody>
       </table>
-    </div>
 
     <div class="card">
       <h3>What you did well</h3>
