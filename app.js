@@ -96,65 +96,6 @@ function renderLabel(label, info) {
     </div>
   `;
 }
-function bindPdfButton() {
-  const btn = document.getElementById("downloadPdfBtn");
-  if (!btn || btn.dataset.bound) return;
-
-  btn.dataset.bound = "1";
-  btn.addEventListener("click", async () => {
-    const report = document.getElementById("report");
-    if (!report) return;
-
-    const participantId =
-      document.querySelector("[data-participant-id]")?.getAttribute("data-participant-id") ||
-      "participant-report";
-
-    const opt = {
-      margin: [10, 10, 10, 10],
-      filename: `${participantId}-assessment-results.pdf`,
-      image: { type: "jpeg", quality: 0.98 },
-      html2canvas: {
-        scale: 2,
-        useCORS: true,
-        backgroundColor: "#ffffff",
-        onclone: (clonedDoc) => {
-          // Remove anything outside the report that may carry unsupported images
-          clonedDoc.body.style.background = "#ffffff";
-
-          // Strip background images in the clone
-          clonedDoc.querySelectorAll("*").forEach((el) => {
-            const style = clonedDoc.defaultView.getComputedStyle(el);
-            if (style.backgroundImage && style.backgroundImage !== "none") {
-              el.style.backgroundImage = "none";
-            }
-          });
-
-          // Hide tooltips / interactive UI in the clone
-          clonedDoc.querySelectorAll(".no-print, .info-tooltip, .info-trigger").forEach((el) => {
-            el.remove();
-          });
-
-          // Force clean PDF colors
-          clonedDoc.querySelectorAll(".card, #report, body").forEach((el) => {
-            el.style.background = "#ffffff";
-            el.style.color = "#000000";
-            el.style.boxShadow = "none";
-          });
-        }
-      },
-      jsPDF: {
-        unit: "mm",
-        format: "a4",
-        orientation: "portrait"
-      },
-      pagebreak: {
-        mode: ["css", "legacy"]
-      }
-    };
-
-    await html2pdf().set(opt).from(report).save();
-  });
-}
 
 async function fetchResults({ participantId, code }) {
   const url = new URL(WORKER_BASE);
@@ -180,8 +121,7 @@ async function fetchResults({ participantId, code }) {
 
 function renderParticipant(participant) {
   return `
-  <div id="report" data-participant-id="${escapeHtml(participant.participantId)}">
-    <div class="card pdf-card">
+    <div class="card">
       <h2>Your Results</h2>
       <div class="participant-info">
         <p>Participant ID: <b>${escapeHtml(participant.participantId)}</b></p>
@@ -239,20 +179,19 @@ function renderParticipant(participant) {
       </div>
     </div>
 
-    <div class="card pdf-card">
+    <div class="card">
       <h2>What you did well</h2>
       ${renderCommentBlocks(participant.didWell)}
     </div>
 
-    <div class="card pdf-card">
+    <div class="card">
       <h2>Gaps</h2>
       ${renderCommentBlocks(participant.gaps)}
     </div>
 
     <div class="no-print">
-      <button id="downloadPdfBtn">Download PDF</button>
+      <button onclick="window.print()">Download PDF</button>
     </div>
-  </div>
   `;
 }
 
@@ -280,7 +219,6 @@ async function run() {
         loginPage.style.display = "none";
         loginCard.style.display = "none";
         app.innerHTML = renderParticipant(data.participant);
-        bindPdfButton();
       } catch (err) {
         app.textContent = `Error: ${err.message}`;
       }

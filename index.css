@@ -240,13 +240,9 @@ body {
       0 8px 24px rgba(0,0,0,0.35);
   justify-content: flex-start;
   text-align: left;
-  max-height: none;
+  max-height: 800px;
   transition: opacity 180ms ease, transform 180ms ease;
   color: var(--text);
-}
-.pdf-mode #app {
-  padding-top: 0 !important;
-  margin: 0 auto !important;
 }
 
 .card.is-visible {
@@ -594,64 +590,7 @@ h2 {
   color: var(--text-muted);
 }
 
-#report {
-  max-width: 1100px;
-  margin: 0 auto;
-}
-
-.pdf-card {
-  break-inside: avoid;
-  page-break-inside: avoid;
-}
-
-.no-print {
-  margin-bottom: 1rem;
-}
-
-@media screen {
-  #report {
-    background: transparent;
-  }
-}
-.pdf-mode {
-  background: white !important;
-  color: black !important;
-}
-
-.pdf-mode #report {
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-.pdf-mode .card {
-  background: white !important;
-  color: black !important;
-  box-shadow: none !important;
-  border: 1px solid #ccc !important;
-  margin: 0 0 16px 0 !important;
-  padding: 16px !important;
-  transform: none !important;
-  max-height: none !important;
-}
-
-.pdf-mode .results-grid {
-  background: white !important;
-}
-
-.pdf-mode .header-cell {
-  background: #f2f2f2 !important;
-  color: black !important;
-}
-
-.pdf-mode .cell {
-  background: white !important;
-  color: black !important;
-}
-
-.pdf-mode .metric-row.striped .cell {
-  background: #fafafa !important;
-}
-/* @media print {
+@media print {
   @page {
     size: A4;
     margin: 12mm;
@@ -770,4 +709,4 @@ h2 {
     border: 1px solid #ccc !important;
     box-shadow: none !important;
   }
-} */
+}
