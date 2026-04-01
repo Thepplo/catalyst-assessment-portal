@@ -23,22 +23,33 @@ function escapeHtml(str) {
 }
 
 function renderScore(score) {
-  if (!score) return `<div>—</div>`;
+  if (!score) {
+    return `
+      <div class="cell score-total">—</div>
+      <div class="cell score-parts">—</div>
+    `;
+  }
 
   return `
-      <div class="grid-bold">
-        ${score.total}
-      </div>
-      <div>
-        (${score.parts.join(", ")})
-      </div>
+    <div class="cell score-total">${escapeHtml(score.total)}</div>
+    <div class="cell score-parts">(${escapeHtml(score.parts.join(", "))})</div>
   `;
 }
-
+function renderMetricRow(label, score, striped = false) {
+  return `
+    <div class="metric-row${striped ? " striped" : ""}">
+      <div class="cell cell-label grid-bold">${escapeHtml(label)}</div>
+      <div class="cell cell-bar">${renderBar(score)}</div>
+      ${renderScore(score)}
+    </div>
+  `;
+}
 function renderBar(score) {
-  if (!score) return "—";
+  if (!score || score.total == null) {
+    return `<div class="bar"><div class="fill" style="width: 0%;"></div></div>`;
+  }
 
-  const percentage = Math.round((score.total / 5) * 100);
+  const percentage = Math.max(0, Math.min(100, (score.total / 5) * 100));
   return `
     <div class="bar">
       <div class="fill" style="width: ${percentage}%;"></div>
@@ -76,36 +87,23 @@ function renderParticipant(participant) {
         <p>Participant ID: <b>${escapeHtml(participant.participantId)}</b></p>
         <p>Judge Count: <b>${escapeHtml(participant.judgeCount)}</b></p>
       </div>
-      <div class="results-grid">
-        <div class="grid-bold">Evidenced & Relevant</div>
-        <div>${renderBar(participant.evidencedRelevant)}</div>
-        ${renderScore(participant.evidencedRelevant)}
 
-        <div class="grid-bold">Hit With Impact</div>
-        <div>${renderBar(participant.hitImpact)}</div>
-        ${renderScore(participant.hitImpact)}
+      <div class="results-grid table-like">
+        <div class="header-cell">Category</div>
+        <div class="header-cell">Score Bar</div>
+        <div class="header-cell">Total</div>
+        <div class="header-cell">Individual Scores</div>
 
-        <div class="grid-bold">80/10/10</div>
-        <div>${renderBar(participant.eightyTen)}</div>
-        ${renderScore(participant.eightyTen)}
-
-        <div class="grid-bold">Hackathon</div>
-        <div>${renderBar(participant.hackaThon)}</div>
-        ${renderScore(participant.hackaThon)}
-
-        <div class="grid-bold">Make It Real</div>
-        <div>${renderBar(participant.makeReal)}</div>
-        ${renderScore(participant.makeReal)}
-
-        <div class="grid-bold">From Knowing To Doing</div>
-        <div>${renderBar(participant.knowingDoing)}</div>
-        ${renderScore(participant.knowingDoing)}
-
-        <div class="grid-bold">Memories</div>
-        <div>${renderBar(participant.memOries)}</div>
-        ${renderScore(participant.memOries)}
+        ${renderMetricRow("Evidenced & Relevant", participant.evidencedRelevant, false)}
+        ${renderMetricRow("Hit With Impact", participant.hitImpact, true)}
+        ${renderMetricRow("80/10/10", participant.eightyTen, false)}
+        ${renderMetricRow("Hackathon", participant.hackaThon, true)}
+        ${renderMetricRow("Make It Real", participant.makeReal, false)}
+        ${renderMetricRow("From Knowing To Doing", participant.knowingDoing, true)}
+        ${renderMetricRow("Memories", participant.memOries, false)}
       </div>
     </div>
+
     <div class="card">
       <h3>What you did well</h3>
       <p>${escapeHtml(participant.didWell || "—")}</p>
