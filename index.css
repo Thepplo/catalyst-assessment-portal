@@ -460,7 +460,7 @@ h2 {
 
 .results-grid {
   display: grid;
-  grid-template-columns: 2fr 3fr 1fr;
+  grid-template-columns: 1fr 2fr 1fr 1fr;
   row-gap: 0.5rem;
   align-items: center;
 }

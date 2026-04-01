@@ -23,13 +23,15 @@ function escapeHtml(str) {
 }
 
 function renderScore(score) {
-  if (!score) return "—";
+  if (!score) return `<div>—</div>`;
 
   return `
-    <div>
-      <strong>${score.total}</strong>
-      <span class="muted">(${score.parts.join(", ")})</span>
-    </div>
+      <div class="grid-bold">
+        ${score.total}
+      </div>
+      <div>
+        (${score.parts.join(", ")})
+      </div>
   `;
 }
 
@@ -75,33 +77,33 @@ function renderParticipant(participant) {
         <p>Judge Count: <b>${escapeHtml(participant.judgeCount)}</b></p>
       </div>
       <div class="results-grid">
-        <div class="font-semibold">Evidenced & Relevant</div>
+        <div class="grid-bold">Evidenced & Relevant</div>
         <div>${renderBar(participant.evidencedRelevant)}</div>
-        <div>${renderScore(participant.evidencedRelevant)}</div>
+        ${renderScore(participant.evidencedRelevant)}
 
-        <div class="font-semibold">Hit With Impact</div>
+        <div class="grid-bold">Hit With Impact</div>
         <div>${renderBar(participant.hitImpact)}</div>
-        <div>${renderScore(participant.hitImpact)}</div>
+        ${renderScore(participant.hitImpact)}
 
-        <div class="font-semibold">80/10/10</div>
+        <div class="grid-bold">80/10/10</div>
         <div>${renderBar(participant.eightyTen)}</div>
-        <div>${renderScore(participant.eightyTen)}</div>
+        ${renderScore(participant.eightyTen)}
 
-        <div class="font-semibold">Hackathon</div>
+        <div class="grid-bold">Hackathon</div>
         <div>${renderBar(participant.hackaThon)}</div>
-        <div>${renderScore(participant.hackaThon)}</div>
+        ${renderScore(participant.hackaThon)}
 
-        <div class="font-semibold">Make It Real</div>
+        <div class="grid-bold">Make It Real</div>
         <div>${renderBar(participant.makeReal)}</div>
-        <div>${renderScore(participant.makeReal)}</div>
+        ${renderScore(participant.makeReal)}
 
-        <div class="font-semibold">From Knowing To Doing</div>
+        <div class="grid-bold">From Knowing To Doing</div>
         <div>${renderBar(participant.knowingDoing)}</div>
-        <div>${renderScore(participant.knowingDoing)}</div>
+        ${renderScore(participant.knowingDoing)}
 
-        <div class="font-semibold">Memories</div>
+        <div class="grid-bold">Memories</div>
         <div>${renderBar(participant.memOries)}</div>
-        <div>${renderScore(participant.memOries)}</div>
+        ${renderScore(participant.memOries)}
       </div>
     </div>
     <div class="card">
