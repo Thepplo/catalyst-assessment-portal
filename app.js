@@ -36,7 +36,7 @@ function renderScore(score) {
 function renderBar(score) {
   if (!score) return "—";
 
-  const percentage = Math.round((score.total / 30) * 100);
+  const percentage = Math.round((score.total / 5) * 100);
   return `
     <div class="bar">
       <div class="fill" style="width: ${percentage}%;"></div>
@@ -70,20 +70,22 @@ function renderParticipant(participant) {
   return `
     <div class="card">
       <h2>Your Results</h2>
-      <p>Participant ID: <b>${escapeHtml(participant.participantId)}</b></p>
-      <p>Judge Count: <b>${escapeHtml(participant.judgeCount)}</b></p>
+      <div class="participant-info">
+        <p>Participant ID: <b>${escapeHtml(participant.participantId)}</b></p>
+        <p>Judge Count: <b>${escapeHtml(participant.judgeCount)}</b></p>
+      </div>
       <table>
         <tbody>
-          <tr><th>Evidenced & Relevant</th><td>${renderScore(participant.evidencedRelevant)}</td> <td>${renderBar(participant.evidencedRelevant)}</td></tr>
-          <tr><th>Hit With Impact</th><td>${renderScore(participant.hitImpact)}</td><td>${renderBar(participant.hitImpact)}</td></tr>
-          <tr><th>80/10/10</th><td>${renderScore(participant.eightyTen)}</td><td>${renderBar(participant.eightyTen)}</td></tr>
-          <tr><th>Hackathon</th><td>${renderScore(participant.hackaThon)}</td><td>${renderBar(participant.hackaThon)}</td></tr>
-          <tr><th>Make It Real</th><td>${renderScore(participant.makeReal)}</td><td>${renderBar(participant.makeReal)}</td></tr>
-          <tr><th>From Knowing To Doing</th><td>${renderScore(participant.knowingDoing)}</td><td>${renderBar(participant.knowingDoing)}</td></tr>
-          <tr><th>Memories</th><td>${renderScore(participant.memOries)}</td><td>${renderBar(participant.memOries)}</td></tr>
+          <tr><th>Evidenced & Relevant</th><td>${renderBar(participant.evidencedRelevant)}</td><td>${renderScore(participant.evidencedRelevant)}</td></tr>
+          <tr><th>Hit With Impact</th><td>${renderBar(participant.hitImpact)}</td><td>${renderScore(participant.hitImpact)}</td></tr>
+          <tr><th>80/10/10</th><td>${renderBar(participant.eightyTen)}</td><td>${renderScore(participant.eightyTen)}</td></tr>
+          <tr><th>Hackathon</th><td>${renderBar(participant.hackaThon)}</td><td>${renderScore(participant.hackaThon)}</td></tr>
+          <tr><th>Make It Real</th><td>${renderBar(participant.makeReal)}</td><td>${renderScore(participant.makeReal)}</td></tr>
+          <tr><th>From Knowing To Doing</th><td>${renderBar(participant.knowingDoing)}</td><td>${renderScore(participant.knowingDoing)}</td></tr>
+          <tr><th>Memories</th><td>${renderBar(participant.memOries)}</td><td>${renderScore(participant.memOries)}</td></tr>
         </tbody>
       </table>
-
+    </div>
     <div class="card">
       <h3>What you did well</h3>
       <p>${escapeHtml(participant.didWell || "—")}</p>
