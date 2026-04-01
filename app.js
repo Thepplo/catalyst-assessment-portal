@@ -116,7 +116,31 @@ function bindPdfButton() {
       html2canvas: {
         scale: 2,
         useCORS: true,
-        backgroundColor: "#ffffff"
+        backgroundColor: "#ffffff",
+        onclone: (clonedDoc) => {
+          // Remove anything outside the report that may carry unsupported images
+          clonedDoc.body.style.background = "#ffffff";
+
+          // Strip background images in the clone
+          clonedDoc.querySelectorAll("*").forEach((el) => {
+            const style = clonedDoc.defaultView.getComputedStyle(el);
+            if (style.backgroundImage && style.backgroundImage !== "none") {
+              el.style.backgroundImage = "none";
+            }
+          });
+
+          // Hide tooltips / interactive UI in the clone
+          clonedDoc.querySelectorAll(".no-print, .info-tooltip, .info-trigger").forEach((el) => {
+            el.remove();
+          });
+
+          // Force clean PDF colors
+          clonedDoc.querySelectorAll(".card, #report, body").forEach((el) => {
+            el.style.background = "#ffffff";
+            el.style.color = "#000000";
+            el.style.boxShadow = "none";
+          });
+        }
       },
       jsPDF: {
         unit: "mm",
@@ -131,6 +155,7 @@ function bindPdfButton() {
     await html2pdf().set(opt).from(report).save();
   });
 }
+
 async function fetchResults({ participantId, code }) {
   const url = new URL(WORKER_BASE);
   url.searchParams.set("participantId", participantId);
