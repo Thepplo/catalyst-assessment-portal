@@ -190,7 +190,9 @@ function renderParticipant(participant) {
     </div>
 
     <div class="no-print button-div">
-      <button class="pdf-button" onclick="window.print()">Download PDF</button>
+      <button class="pdf-button" onclick="window.print()">
+        <img src="assets/public/icons/download-file.svg"/>
+      </button>
     </div>
   `;
 }
