@@ -31,7 +31,7 @@ function renderScore(score) {
   }
 
   return `
-    <div class="cell score-total">${escapeHtml(score.total)}</div>
+    <div class="cell score-total">${escapeHtml(score.total)}/5</div>
     <div class="cell score-parts">(${escapeHtml(score.parts.join(", "))})</div>
   `;
 }
