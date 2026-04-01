@@ -198,6 +198,7 @@ function renderParticipant(participant) {
             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </button>
+      <p>Download PDF</p>
     </div>
   `;
 }
