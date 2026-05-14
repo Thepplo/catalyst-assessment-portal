@@ -122,7 +122,7 @@ async function fetchResults({ participantId, code }) {
 function renderParticipant(participant) {
   return `
     <div class="card">
-      <h2>Your Results</h2>
+      <h2>7 MOMENTS FOR PROGRAM DEVELOPMENT - Assessment​</h2>
       <div class="participant-info">
         <p>Participant ID: <b>${escapeHtml(participant.participantId)}</b></p>
         <p>Judge Count: <b>${escapeHtml(participant.judgeCount)}</b></p>

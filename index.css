@@ -220,13 +220,7 @@ body {
 
 .card {
   transform: translateY(15px);
-  background:
-      linear-gradient(
-      to bottom,
-      rgba(255,255,255,0.03),
-      rgba(0,0,0,0.05)
-      ),
-      #3A3237;
+  background: #e7c631;
   border: 1px solid rgba(255,255,255,0.06); 
   border-radius: 12px; 
   padding: 2.5rem;
@@ -242,7 +236,14 @@ body {
   text-align: left;
   max-height: 800px;
   transition: opacity 180ms ease, transform 180ms ease;
-  color: var(--text);
+  color: #1A1418;
+}
+
+.rating-band {
+  display: flex;
+  gap: 12px;
+  background-color: #770136;
+  width: 100%;
 }
 
 .card.is-visible {
